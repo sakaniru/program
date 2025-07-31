@@ -22,6 +22,10 @@ class File:
     def read(self):
         return self.file.read()
 #讀取第一個檔案
+f0=File("data.txt")
+f0.open()
+data=f0.read()
+print(data)
 f1=File("data1.txt")
 f1.open()
 data=f1.read()
