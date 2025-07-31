@@ -11,7 +11,7 @@ import pandas as pd
 # print(data)
 
 # data=pd.DataFrame({             #可建立欄列
-#      "name" :["阿志","包哥","立羽"],
+#      "name" :["阿志","阿包","阿羽"],
 #      "SSSS" :["100","200","300"]
 # })
 # data["SSSS"]=data["SSSS"].astype(int)

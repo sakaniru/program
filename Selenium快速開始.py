@@ -24,5 +24,5 @@ options.add_argument("incognito")#無痕模式
 service=Service("E:\\chromedriver-win64\\chromedriver.exe")#指定路徑要用\\隔開
 driver=webdriver.Chrome(options=options)
 driver.get("https://www.google.com/")
-driver.save_screenshot("google截圖測試.png")
+driver.save_screenshot("google截圖1測試.png")
 driver.close()

@@ -20,7 +20,6 @@ def calculate():
 
 root = tk.Tk()
 root.title("簡易計算機")
-
 entry = tk.Entry(root, width=16, font=('Arial', 24), bd=5, relief=tk.RIDGE, justify='right')
 entry.grid(row=0, column=0, columnspan=4)
 
@@ -41,4 +40,4 @@ for btn in buttons:
         col = 0
         row += 1
 
-# root.mainloop()
+root.mainloop()
