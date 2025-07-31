@@ -1,0 +1,11 @@
+.buildozer/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.swp
+*.swo
+*.egg-info/
+dist/
+build/
+*.spec
