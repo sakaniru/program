@@ -36,5 +36,5 @@ last2= input("請輸入第二位的名字:")
 
 name2=fullname(first2,last2)
 print("第二位全名:", name2.first + name2.last)
-print("兩位全名:",name1.first+name1.last+""+name2.first+name2.last)
+
 
