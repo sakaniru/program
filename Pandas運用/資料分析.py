@@ -17,3 +17,21 @@ import pandas as pd
 # data["SSSS"]=data["SSSS"].astype(int)
 # print(data["SSSS"].median())
 
+data = {
+    '姓名': ['小明', '小華'],
+    '年齡': [25, 30],
+    '城市': ['台北', '高雄']
+}
+
+df = pd.DataFrame(data)
+
+# 顯示讀取的資料
+print("讀取的資料：")
+print(df)
+# 顯示資料的統計資訊
+print("資料統計資訊：")
+print(df.describe())   
+
+
+
+
