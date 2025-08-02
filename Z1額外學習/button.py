@@ -20,7 +20,7 @@ def change_btn_color():
     g = random.randint(0, 255)
     b = random.randint(0, 255)
     color = f'#{r:02x}{g:02x}{b:02x}'
-    print("變更顏色為：", color)
+    print("變更顏色為：", color)    
 
     # 更改目標按鈕的背景色
     btn_target.config(bg=color)
@@ -55,7 +55,6 @@ btnclick.pack(pady=100)
 btn_change = tk.Button(root, text="隨機改背景色", command=change,width=10,height=5)
 btn_change.pack(pady=100)
 root.protocol("WM_DELETE_WINDOW",off)
-# root.bind("<Configure>", on_resize)
 
 
 
