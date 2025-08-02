@@ -1,3 +1,4 @@
+#按鈕
 import tkinter as tk
 import random
 def click():
@@ -59,3 +60,4 @@ root.protocol("WM_DELETE_WINDOW",off)
 
 
 root.mainloop()
+
