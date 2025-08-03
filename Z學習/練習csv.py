@@ -1,6 +1,6 @@
 import csv
 #寫入
-def write_csv(x, data):
+def write(x, data):
     with open(x, mode='w', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
         writer.writerows(data)
@@ -11,23 +11,22 @@ data = [
     ['小明', 25, '台北'],
     ['小華', 30, '台中'],
     ['小王', 22, '高雄'],
-    ['小李', 28, ]
+    ['小李', 28, 11]
 ]
 
 
-write_csv('people.csv', data)
+write('people.csv', data)
 
 
 #讀取
-def read_csv(G):
-    with open(G, mode='r', newline='', encoding='utf-8') as file:#newline=''避免換行符號問題
-        reader = csv.reader(file)
+def read(file_path):
+    with open(file_path, mode='r', newline='', encoding='utf-8') as file:
         n=0
+        reader = csv.reader(file)
         for row in reader:
             n+=1
             print(f"第 {n} 行:", row)
-
-read_csv('people.csv')
+read('people.csv')
 
 
 # 寫入 CSV - 有加 newline=''
