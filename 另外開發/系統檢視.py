@@ -3,48 +3,45 @@ import psutil
 import wmi
 import os
 import time
-import socket
 
 
-# ---------------- 系統資訊 ----------------
+print("系統資訊:")
 print("作業系統:", platform.system(), platform.release())
 print("OS 平台:", platform.platform())
-# print("Python 版本:", platform.python_version())
 print("系統位元數:", platform.architecture()[0])
 print("主機名稱:", platform.node())
 print("用戶名稱:", os.getlogin())
 
-# 系統開機時間
+
 boot_time = psutil.boot_time()
 print("開機時間:", time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(boot_time)))
+print("-" * 10)
 
-print("-" * 40)
 
-# ---------------- CPU 資訊 ----------------
+print("CPU 相關資訊:")
+c = wmi.WMI()
+cpu_info = c.Win32_Processor()[0]
+print("CPU 名稱:", cpu_info.Name)
 print("CPU 架構:", platform.machine())
 print("CPU 物理核心數:", psutil.cpu_count(logical=False))
 print("CPU 核心數(含邏輯):", psutil.cpu_count(logical=True))
-
 freq = psutil.cpu_freq()
 print("CPU 頻率: {:.2f} MHz".format(freq.current if freq else 0))
-try:
-    import cpuinfo
-    print("CPU 名稱:", cpuinfo.get_cpu_info()['brand_raw'])
-except:
-    print("CPU 名稱: 無法取得，建議安裝 'py-cpuinfo'")
+cpu_usage = psutil.cpu_percent(interval=1) 
+print("CPU 使用率: {:.2f}%".format(cpu_usage))
+print("-" * 10)
 
-print("-" * 40)
 
-# ---------------- RAM 資訊 ----------------
+print("記憶體相關資訊:")
 ram = psutil.virtual_memory()
 print("總記憶體(RAM):", round(ram.total / (1024**3),2), "GB")
 print("已使用:", round(ram.used / (1024**3), 2), "GB")
 print("剩餘:", round(ram.available / (1024**3), 2), "GB")
 print("記憶體使用率:", ram.percent, "%")
+print("-" * 10)
 
-print("-" * 40)
 
-# ---------------- GPU 資訊 (Windows) ----------------
+print("GPU 相關資訊:")
 w = wmi.WMI()
 gpus = w.Win32_VideoController()
 if gpus:
@@ -55,10 +52,10 @@ if gpus:
         print("-" * 20)
 else:
     print("找不到 GPU 資訊")
+print("-" * 10)
 
-print("-" * 40)
 
-# ---------------- 磁碟資訊 ----------------
+print("磁碟相關資訊:")
 for part in psutil.disk_partitions():
     usage = psutil.disk_usage(part.mountpoint)
     print(f"磁碟 {part.device}")
@@ -66,19 +63,5 @@ for part in psutil.disk_partitions():
     print(f"  已用: {round(usage.used/1024**3,2)} GB")
     print(f"  剩餘: {round(usage.free/1024**3,2)} GB")
     print(f"  使用率: {usage.percent}%")
-    print("-" * 20)
-
-print("-" * 40)
-
-
-# # ---------------- 網路資訊 ----------------
-# hostname = socket.gethostname()
-# ip_address = socket.gethostbyname(hostname)
-# print("本機 IP 位址:", ip_address)
-
-# net = psutil.net_io_counters()
-# print("已上傳:", round(net.bytes_sent/1024**2,2), "MB")
-# print("已下載:", round(net.bytes_recv/1024**2,2), "MB")
-
-
-#pyinstaller --onefile --distpath "E:\派森\另外開發\dist" "E:\派森\另外開發\系統檢視.py"
+print("-" * 10)
+print(input("請按任意鍵結束"))
