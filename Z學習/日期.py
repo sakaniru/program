@@ -10,18 +10,44 @@ today=dt.date.today()
 # print("四週後是", nextweek)
 # print("四週後是", nextweek.year, "年", nextweek.month, "月", nextweek.day, "日")
 #取得下個月第一天的日期
+# next_month = today.replace(day=1) + dt.timedelta(days=32)
+# next_month = next_month.replace(day=1)  # 確保是下個月的第一天
+
+# #取得下個月最後一天的日期
+# next_month_last_day = next_month + dt.timedelta(days=31)
+# next_month_last_day = next_month_last_day.replace(day=1) - dt.timedelta(days=1)
+
+# while next_month_last_day.month != next_month.month:
+#     next_month_last_day -= dt.timedelta(days=1)
+
+
+
+# print("下個月第一天的日期是:", next_month.strftime("%Y-%m-%d"))
+# print("下個月最後一天的日期是:", next_month_last_day.strftime("%Y-%m-%d"))
+# print("今天的日期是:", today.strftime("%Y-%m-%d"))
+# print("今天是", today.year, "年", today.month, "月", today.day, "日")
+# print("下個月第一天的日期是:", next_month.strftime("%Y-%m-%d"))
+
+import datetime as dt
+
+# 印出今天的日期
+today = dt.date.today()
+
+# 取得下個月第一天的日期
 next_month = today.replace(day=1) + dt.timedelta(days=32)
 next_month = next_month.replace(day=1)  # 確保是下個月的第一天
 
-#取得下個月最後一天的日期
+# 取得下個月最後一天的日期
 next_month_last_day = next_month + dt.timedelta(days=31)
 next_month_last_day = next_month_last_day.replace(day=1) - dt.timedelta(days=1)
 
-print("下個月第一天的日期是:", next_month.strftime("%Y-%m-%d"))
-print("下個月最後一天的日期是:", next_month_last_day.strftime("%Y-%m-%d"))
-print("今天的日期是:", today.strftime("%Y-%m-%d"))
-print("今天是", today.year, "年", today.month, "月", today.day, "日")
-# print("下個月第一天的日期是:", next_month.strftime("%Y-%m-%d"))
+# 用 while 來列出下個月的每一天
+current_day = next_month
+while current_day <= next_month_last_day:
+    print(current_day.strftime("%Y-%m-%d"))
+    current_day += dt.timedelta(days=1)
+
+    
 weekday_name={
     0: "星期一",
     1: "星期二",
@@ -53,3 +79,4 @@ weekday_name={
 #     now = dt.datetime.now()
 #     print("現在的日期和時間是:", now.strftime("%Y-%m-%d %H:%M:%S"))
 # print_today_datetime()
+
