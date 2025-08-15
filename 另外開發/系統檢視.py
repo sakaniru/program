@@ -24,7 +24,7 @@ print("-" * 40)
 print("CPU 架構:", platform.machine())
 print("CPU 物理核心數:", psutil.cpu_count(logical=False))
 print("CPU 核心數(含邏輯):", psutil.cpu_count(logical=True))
-print("CPU 使用率:", psutil.cpu_percent(interval=1), "%")
+
 freq = psutil.cpu_freq()
 print("CPU 頻率: {:.2f} MHz".format(freq.current if freq else 0))
 try:
@@ -79,3 +79,6 @@ print("-" * 40)
 # net = psutil.net_io_counters()
 # print("已上傳:", round(net.bytes_sent/1024**2,2), "MB")
 # print("已下載:", round(net.bytes_recv/1024**2,2), "MB")
+
+
+#pyinstaller --onefile --distpath "E:\派森\另外開發\dist" "E:\派森\另外開發\系統檢視.py"
