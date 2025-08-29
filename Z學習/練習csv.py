@@ -4,7 +4,7 @@ def write(x, data):
     with open(x, mode='w', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
         writer.writerows(data)
-        writer.writerow(["a", "b"])  
+        writer.writerow(["a", "b","c"])  
 
 data = [
     ['姓名', '年齡', '城市'],

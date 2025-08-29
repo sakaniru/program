@@ -12,13 +12,13 @@ model.eval()
 if torch.cuda.is_available():
     model.to("cuda")
 
-# 修改過的聊天函式：使用 [[user, ai], [user, ai], ...] 格式的 chat_history
+# 聊天函式
 def chat_with_model(user_input, chat_history):
     # 把歷史訊息組成文字輸入給模型
     input_text = ""
     for user, bot in chat_history:
         input_text += f"User: {user}\nAI: {bot}\n"
-    input_text += f"User: {user_input}\nAI:"
+    input_text += f"User: {user_input}\nAI: "
 
     # Tokenize 並送入模型
     inputs = tokenizer(input_text, return_tensors="pt").to(model.device)

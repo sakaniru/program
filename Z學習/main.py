@@ -1,11 +1,11 @@
 class IO:
-    supportedSrcs=["console","file"]
-    def read(src):
-        if src not in IO.supportedSrcs:
+    s=["console","file"]
+    def read(sr):
+        if sr not in IO.s:
             print("not in")
         else:
-            print("Read from",src)
+            print("Read from",sr)
 
-print(IO.supportedSrcs)
+print(IO.s)
 IO.read("file")
 IO.read("internet")
