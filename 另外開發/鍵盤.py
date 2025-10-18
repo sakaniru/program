@@ -23,6 +23,7 @@ keyboard.on_press_key("v", toggle_mouse)
 
 auto_f = False  # 自動按 F 開關
 interval = 0.05  # 每隔多少秒按一次 F
+
 def toggle_auto_f(e):
     global auto_f
     auto_f = not auto_f
@@ -35,11 +36,13 @@ keyboard.on_press_key("f6", toggle_auto_f)
 
 # ======= 自動按 R =======
 auto_r = False  # 自動按 R 開關
-interval = 0.01  # 每隔多少秒按一次 R
+r_count = 0     # 計數器
+r_max = 20      # 最大次數
 def toggle_auto_r(e):
-    global auto_r
+    global auto_r ,r_count
     auto_r = not auto_r
     if auto_r:
+        r_count=0
         print("開始自動按 R")
     else:
         print("停止自動按 R")
@@ -47,17 +50,21 @@ def toggle_auto_r(e):
 keyboard.on_press_key("f3", toggle_auto_r)
 
 def auto_press_r():
+    global r_count,auto_r
     while True:
         if auto_r:
             keyboard.press_and_release("r")  # 模擬按一次 R
-        time.sleep(0.01)
-
+            r_count+=1
+            if r_count>=r_max:
+                auto_r=False
+                print("已經MAX次數，停止")
+        time.sleep(0.02)
 
 def auto_press_f():
     while True:
         if auto_f:
             keyboard.press_and_release("f")  # 模擬按一次 f
-        time.sleep(0.01)
+        time.sleep(0.1)
 
 # 啟動背景線程
 threading.Thread(target=auto_press_f, daemon=True).start()
