@@ -1,3 +1,4 @@
+# Build / Python cache
 .buildozer/
 __pycache__/
 *.pyc
@@ -9,3 +10,9 @@ __pycache__/
 dist/
 build/
 *.spec
+
+# 忽略所有 .env 檔案
+.env
+*.env
+**/.env
+DCBOT/.env
