@@ -7,5 +7,5 @@ Z學習：
 Record what I am learning
 
 小專案：
-有時候想到什麼就開發 通常是為了方便
+有時候想到什麼就開發 通常是為了方便\n
 Sometimes I develop something whenever an idea comes to mind, usually for convenience.
