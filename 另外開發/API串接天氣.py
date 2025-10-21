@@ -7,8 +7,8 @@ params = {
   "longitude": 121.625,
   "hourly": "temperature_2m",
   "timezone": "Asia/Taipei",
-  "start_date": "2025-10-04",
-  "end_date": "2025-10-05"
+  "start_date": "2025-10-20",
+  "end_date": "2025-10-22"
 }
 response = requests.get(url, params=params)
 data = response.json()
