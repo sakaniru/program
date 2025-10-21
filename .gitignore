@@ -27,3 +27,5 @@ venv/
 # === 打包輸出 ===
 build/
 dist/
+*.exe
+*.csv
