@@ -4,7 +4,7 @@ import requests
 url = "https://api.open-meteo.com/v1/forecast"
 params = {
   "latitude": 25,
-  "longitude": 121.625,
+  "longitude": 121.625, # 台北市經緯度
   "hourly": "temperature_2m",
   "timezone": "Asia/Taipei",
   "start_date": "2025-10-20",
