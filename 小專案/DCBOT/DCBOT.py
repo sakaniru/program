@@ -92,7 +92,7 @@ async def 主詞(ctx):
     
 @bot.command()
 async def 早(ctx):
-    await ctx.send("幹你娘早安啦")
+    await ctx.send("早安啦")
 
 @bot.command(name="風流")
 async def 風流(ctx):
