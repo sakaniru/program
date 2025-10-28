@@ -15,10 +15,11 @@ load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
 #print(f"目前讀到的TOKEN是：{TOKEN}")
 
+
 intents = discord.Intents.default()
 intents.message_content = True
 
-bot = commands.Bot(command_prefix=["!","！"], intents=intents)
+bot = commands.Bot(command_prefix=["!","！"], intents=intents)# 
 scheduler = AsyncIOScheduler()  # 🔥 建立排程器實例
 
 @bot.event
@@ -28,13 +29,10 @@ async def on_ready():
     print(f"✅ 已登入為 {bot.user}")
     # scheduler.start()
     # print("🕒 排程器已啟動")
-    # target_time = datetime.datetime(2025, 10, 20, 12, 0, 0)#時間格式 00:00:00
+    # target_time = datetime.datetime(2025, 10, 26, 17, 50, 0)#時間格式 00:00:00
 
-    # user_ids = [
-    #     311142287084093450,#風流
-    # ]
-
-    # channel_id = 398100437342879745
+    # user_ids = [int(os.getenv(f"DISCORD_風流")), int(os.getenv(f"DISCORD_米哭")), int(os.getenv(f"DISCORD_毛毛"))]
+    # channel_id = int(os.getenv("DISCORD_頻道"))
     # async def tag_users():  
     #     channel = bot.get_channel(channel_id)
     #     if channel is None:
@@ -47,14 +45,14 @@ async def on_ready():
     #         mentions.append(user.mention)
 
     #     mention_text = " ".join(mentions)
-    #     await channel.send(f"{mention_text} 星塔旅人 啟動！\nhttps://stellasora.jp/")
+    #     await channel.send(f"{mention_text} 星塔旅人 啟動！\nhttps://www.youtube.com/live/GeYczC8v1EM")
     #     print("✅ 已自動發送風流標註訊息")
     # scheduler.add_job(tag_users, "date", run_date=target_time)
-    # print("🗓️ 已設定自動在 2025/10/20 12:00:00 發送訊息")
+    # print("🗓️ 已設定自動在 2025/10/26 17:50:00 發送訊息")
 
-@bot.command()
-async def hello(ctx):
-    await ctx.send("你爹來了，我是風流GG人")
+# @bot.command()
+# async def hello(ctx):
+#     await ctx.send("你爹來了，我是風流GG人")
 
 @bot.command()
 async def 吃(ctx):
@@ -89,37 +87,73 @@ async def 喝(ctx):
 @bot.command()
 async def 主詞(ctx):
     await ctx.send("講話他媽的說主詞")
+@bot.command()
+async def 睡覺(ctx):
+    await ctx.send("https://cdn.discordapp.com/attachments/1425974624604389378/1431523428619386961/images.jpg?ex=68fdb995&is=68fc6815&hm=62970a640e9d8e5306ed9982c928b844a71923cd05a34fdcfba46a1c2ae211a4&")
+
+@bot.command()
+async def 動腦(ctx):
+    await ctx.send("幹你他媽的動點腦")
+
     
 
 @bot.command(name="風流")
 async def 風流(ctx):
-    user_id =  int(os.getenv("DISCORD_風流")) # ← 風流文雅(電視) 因為使用authon.mention <<是用來標註發送指令的使用者 有需要的時候再去discord複製ID 
-    user = await bot.fetch_user(user_id) 
-    
-    gif_urls = ["https://cdn.discordapp.com/attachments/1191594326631907360/1429732184968921319/efba38525f5e1c73.jfif?ex=68f7355c&is=68f5e3dc&hm=df0e4c95d6de4389a88b0ec7ea23e1b5ea28666a98db18490797e8dbe9e8cb40&",
-                "https://cdn.discordapp.com/attachments/1191594326631907360/1429732184717135934/images.jfif?ex=68f7355b&is=68f5e3db&hm=62cd44ed00723d0ff1d1de369c58731244c62986221976d1419f49e8f5308d2f&",
-                "https://cdn.discordapp.com/attachments/1191594326631907360/1429732184482123786/1.jfif?ex=68f7355b&is=68f5e3db&hm=ab607fa7b7a9cd7b78e1fd4da0d79889b9f149c2086ce7c41efdc14e29584f0e&",
-                "https://cdn.discordapp.com/attachments/1191594326631907360/1429732184205557860/2.jfif?ex=68f7355b&is=68f5e3db&hm=6763a318ce041d69ac57c5abd4dd161e098e2b47fa0e9960ed10afd596c91add&"
+    user_id = int(os.getenv("DISCORD_風流"))  # 風流本人 ID
+    user = await bot.fetch_user(user_id)
+
+    gif_urls = [
+        "https://cdn.discordapp.com/attachments/1191594326631907360/1429732184968921319/efba38525f5e1c73.jfif?ex=68f7355c&is=68f5e3dc&hm=df0e4c95d6de4389a88b0ec7ea23e1b5ea28666a98db18490797e8dbe9e8cb40&",
+        "https://cdn.discordapp.com/attachments/1191594326631907360/1429732184717135934/images.jfif?ex=68f7355b&is=68f5e3db&hm=62cd44ed00723d0ff1d1de369c58731244c62986221976d1419f49e8f5308d2f&",
+        "https://cdn.discordapp.com/attachments/1191594326631907360/1429732184482123786/1.jfif?ex=68f7355b&is=68f5e3db&hm=ab607fa7b7a9cd7b78e1fd4da0d79889b9f149c2086ce7c41efdc14e29584f0e&",
+        "https://cdn.discordapp.com/attachments/1191594326631907360/1429732184205557860/2.jfif?ex=68f7355b&is=68f5e3db&hm=6763a318ce041d69ac57c5abd4dd161e098e2b47fa0e9960ed10afd596c91add&",
     ]
+
     gif_choice = random.choice(gif_urls)
-    if ctx.author.id == user.id:
-         await ctx.send(f"{ctx.author.mention} 標你媽呢標，沒被扁過是吧")
 
-    else:
-        await ctx.send(f"{ctx.author.mention} 標你媽呢標，沒被扁過是吧 {user.mention}")
-
+    # 回覆訊息
+    await ctx.send(f"{ctx.author.mention} 標你媽呢標，沒被扁過是不是？")
     await ctx.send(gif_choice)
-@bot.event#對應!風流
+
+
+recent_mentions = {}
+
+@bot.event
 async def on_message(message):
     if message.author.bot:
-        return  # 忽略其他 Bot 的訊息
-
-    # 檢查是否為 "風流" 三種變化
-    if message.content.strip() in ["風流", "!風流", "！風流"]:
-        ctx = await bot.get_context(message)
-        await 風流(ctx)  # ✅ 直接呼叫指令函式
         return
 
+    me_id = int(os.getenv("DISCORD_風流"))
+    me = await bot.fetch_user(me_id)
+
+    now = datetime.datetime.now()
+
+    #  情況1：有人標註你
+    if any(user.id == me_id for user in message.mentions):
+        guild_name = message.guild.name if message.guild else "私人對話"
+        channel_name = message.channel.name if hasattr(message.channel, "name") else "未知頻道"
+        recent_mentions[message.author.id] = now  # 記錄這個人剛標註過你
+
+        await me.send(
+            f"⚠️ {message.author.display_name} 在伺服器「{guild_name}」的頻道「#{channel_name}」標註了你！"
+        )
+
+    #  情況2：剛剛標註過你，又發文字
+    elif (
+        message.author.id in recent_mentions
+        and (now - recent_mentions[message.author.id]).seconds < 15  # 15秒內視為延續訊息
+    ):
+        msg_content = message.content.strip() if message.content else "(無文字內容)"
+        attachments = "\n".join(a.url for a in message.attachments) if message.attachments else ""
+
+        notify_msg = f"💬 {message.author.display_name} 標註你說：{msg_content}"
+        if attachments:
+            notify_msg += f"\n📎 附件：\n{attachments}"
+
+        await me.send(notify_msg)
+
+        # 為避免誤觸，發完後移除紀錄
+        del recent_mentions[message.author.id]
 
     if message.content.strip()in ["早","!早","早安","!早安","！早安","！早"]:
         ctx = await bot.get_context(message)
