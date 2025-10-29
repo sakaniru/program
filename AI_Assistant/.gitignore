@@ -1,0 +1,31 @@
+# === 忽略環境變數 ===
+.env
+DCBOT/.env
+
+# === Python 編譯與暫存 ===
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# === 編輯器設定 ===
+.vscode/
+.idea/
+
+# === 系統暫存 / 日誌 ===
+*.log
+*.tmp
+*.bak
+Thumbs.db
+Desktop.ini
+
+# === 虛擬環境 ===
+.venv/
+env/
+venv/
+
+# === 打包輸出 ===
+build/
+dist/
+*.exe
+*.csv
