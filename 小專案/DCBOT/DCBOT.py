@@ -55,6 +55,13 @@ async def on_ready():
 #     await ctx.send("你爹來了，我是風流GG人")
 
 @bot.command()
+async def 今天餐費(ctx):
+    prices=[0,50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000]
+    pick= random.choice(prices)
+    await ctx.send (f"今天餐費：{pick}")
+
+
+@bot.command(aliases=["！吃"])
 async def 吃(ctx):
     foods = [
         "麥當勞","KFC","漢堡王","摩斯漢堡","SUBWAY","必勝客","達美樂","吃屎",
@@ -66,19 +73,13 @@ async def 吃(ctx):
     choice = random.choice(foods)
     await ctx.send(f"{ctx.author.mention}\n{choice}")
 
-@bot.command()
+@bot.command(aliases=["！喝"])
 async def 喝(ctx):
     foods = [
-        "豆漿", "奶茶", "紅茶拿鐵", "抹茶拿鐵",
-        "仙草奶凍", "芋泥球", "珍奶鬆餅", "雞蛋布丁", "奶酪", "焦糖布丁",
-        "黑糖珍珠鮮奶", "抹茶紅豆冰", "楊枝甘露", "愛玉檸檬", "百香果綠茶",
-        "水果茶", "蜂蜜綠茶", "冬瓜檸檬", "梅子綠", "蘋果紅茶", "凍檸茶",
-        # 👇 甜點 / 飲品
-        "珍奶",  "綠茶", "紅茶", "烏龍茶", "奶蓋紅茶",
-        "芒果冰", "草莓冰", "鳳梨冰", "黑糖刨冰", "綜合水果冰", "豆漿紅茶",
-        "西米露", "仙草奶凍", "愛玉冰", "抹茶冰淇淋", "紅豆冰沙",
-        "綠豆冰沙", "奶茶冰沙", "巧克力冰沙", "香蕉牛奶", "木瓜牛奶",
-        "甘蔗汁", "青草茶", "冬瓜檸檬茶", "仙草冰茶",
+        "豆漿", "奶茶", "紅茶拿鐵", "抹茶拿鐵","仙草奶凍","黑糖珍珠鮮奶","抹茶紅豆冰", 
+        "楊枝甘露", "愛玉檸檬", "百香果綠茶","水果茶", "蜂蜜綠茶", "冬瓜檸檬", "梅子綠", "蘋果紅茶",
+        "凍檸茶","珍奶",  "綠茶", "紅茶", "烏龍茶", "奶蓋紅茶","豆漿紅茶","西米露", "仙草奶凍", "愛玉冰","紅豆冰沙",
+        "綠豆冰沙", "奶茶冰沙", "巧克力冰沙", "香蕉牛奶", "木瓜牛奶","甘蔗汁", "青草茶", "冬瓜檸檬茶", "仙草冰茶",
     ]
     choice = random.choice(foods)
     await ctx.send(f"{ctx.author.mention}\n{choice}")
@@ -95,7 +96,26 @@ async def 睡覺(ctx):
 async def 動腦(ctx):
     await ctx.send("幹你他媽的動點腦")
 
-    
+
+
+@bot.command()
+async def AV(ctx):
+    names=os.getenv("AV_GIRLS")
+    names=names.split(",")
+
+    duplicates = {x for x in names if names.count(x) > 1}
+    if duplicates:
+        print(f"⚠️ 名單中有重複：{', '.join(duplicates)}（已自動去除）")
+
+    AV_girls = set(names)  # 清理後的名單使用 set
+
+    pick = random.choice(list(AV_girls))
+    await ctx.send(f" 今天用 —— **{pick}**")
+  
+
+@bot.command()
+async def 救救(ctx):
+    await ctx.send("救命")
 
 @bot.command(name="風流")
 async def 風流(ctx):
@@ -122,12 +142,54 @@ recent_mentions = {}
 async def on_message(message):
     if message.author.bot:
         return
-
+    
     me_id = int(os.getenv("DISCORD_風流"))
     me = await bot.fetch_user(me_id)
 
-    now = datetime.datetime.now()
+    # ✅ 情況：別人使用「回覆」回你
+    if message.reference and message.reference.resolved:
+        replied_msg = message.reference.resolved  # 被回覆的原訊息
 
+        if replied_msg.author.id == me_id:  # 原訊息是你
+            guild_name = message.guild.name if message.guild else "私人對話"
+
+            # ✅ 判斷是否為 Thread / 子頻道
+            if isinstance(message.channel, discord.Thread):
+                channel_display = f"{message.channel.parent.name} ▸ {message.channel.name}"
+            else:
+                channel_display = message.channel.name
+
+            # 🗨️ 原訊息內容
+            original_text = replied_msg.content if replied_msg.content else "(原訊息無文字內容)"
+
+            # 💬 新回覆內容
+            msg_content = message.content.strip() if message.content else "(無文字內容)"
+
+            # 🔗 跳轉回該訊息
+            jump_link = replied_msg.jump_url
+
+            # 📎 新訊息附件（如果有）
+            attachments = "\n".join(a.url for a in message.attachments) if message.attachments else ""
+
+            notify_msg = (
+                f"時間：{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
+                f"你在「{guild_name} / {message.channel.mention}」有一則被回覆的訊息\n"
+                f"━━━━━━━━━━━━\n"
+                f" **你說：**\n{original_text}\n\n"
+                f" **{message.author.display_name} 回覆：**\n{msg_content}\n\n"
+                f" **[點我跳轉訊息]({jump_link})**"
+
+            )
+
+            if attachments:
+                notify_msg += f"\n📎 **附件：**\n{attachments}"
+
+            await me.send(notify_msg)
+            return  # ✅ 避免後面 mentions 邏輯重複觸發
+
+
+    now = datetime.datetime.now()
+    
     #  情況1：有人標註你
     if any(user.id == me_id for user in message.mentions):
         guild_name = message.guild.name if message.guild else "私人對話"
@@ -154,6 +216,7 @@ async def on_message(message):
 
         # 為避免誤觸，發完後移除紀錄
         del recent_mentions[message.author.id]
+
 
     if message.content.strip()in ["早","!早","早安","!早安","！早安","！早"]:
         ctx = await bot.get_context(message)
