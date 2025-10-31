@@ -17,12 +17,12 @@ def toggle_mouse(e):
         pyautogui.mouseUp()
         print("滑鼠左鍵已放開")
 
-keyboard.on_press_key("v", toggle_mouse)
+keyboard.on_press_key("B", toggle_mouse)
 
 # ======= 自動按 F =======
 
 auto_f = False  # 自動按 F 開關
-interval = 0.05  # 每隔多少秒按一次 F
+interval = 0.02  # 每隔多少秒按一次 F
 
 def toggle_auto_f(e):
     global auto_f
@@ -37,7 +37,7 @@ keyboard.on_press_key("f6", toggle_auto_f)
 # ======= 自動按 R =======
 auto_r = False  # 自動按 R 開關
 r_count = 0     # 計數器
-r_max = 20      # 最大次數
+r_max = 25      # 最大次數
 def toggle_auto_r(e):
     global auto_r ,r_count
     auto_r = not auto_r
@@ -57,7 +57,7 @@ def auto_press_r():
             r_count+=1
             if r_count>=r_max:
                 auto_r=False
-                print("已經MAX次數，停止")
+                print(f"已經到達{r_max}次數，停止")
         time.sleep(0.02)
 
 def auto_press_f():
@@ -73,7 +73,7 @@ threading.Thread(target=auto_press_f, daemon=True).start()
 # 啟動背景線程
 threading.Thread(target=auto_press_r, daemon=True).start()
 
-print("按 V 切換滑鼠左鍵/停止自動按 R，按 F7 結束程式")
+print("按 B 切換滑鼠左鍵/停止自動按 R，按 F7 結束程式")
 
 
 
