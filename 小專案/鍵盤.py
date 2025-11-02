@@ -37,7 +37,7 @@ keyboard.on_press_key("f6", toggle_auto_f)
 # ======= 自動按 R =======
 auto_r = False  # 自動按 R 開關
 r_count = 0     # 計數器
-r_max = 25      # 最大次數
+r_max = 28      # 最大次數
 def toggle_auto_r(e):
     global auto_r ,r_count
     auto_r = not auto_r
