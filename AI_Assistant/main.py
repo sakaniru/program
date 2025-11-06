@@ -34,8 +34,9 @@ generator = pipeline(
 )
 
 # --- 路徑設定 ---
-character_path = "assets/character/assistant.png"
-tray_path = "assets/icons/tray.png"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+character_path = os.path.join(BASE_DIR, "assets/character/assistant.png")
+tray_path = os.path.join(BASE_DIR, "assets/icons/tray.png")
 
 if not os.path.exists(character_path):
     raise FileNotFoundError(f"找不到角色圖: {character_path}")
@@ -139,8 +140,8 @@ class ChatWindow(QWidget):
 
             # --- Qwen 對話最佳化 prompt ---
             prompt = f"""
-            你是一個可愛、有禮貌且自然的桌面 AI 助理。
-            請以中文為主，必要時可混用英文數字，語氣要自然。
+            你是一個有禮貌且自然的桌面 AI 助理。
+            以中文為主，必要時可混用英文數字，語氣自然。
             回答限制在 1~3 句之內，不要出現重複句、符號、過長內容或「--- 對話結束 ---」等奇怪片段。
             使用者：{text}
             助理：
