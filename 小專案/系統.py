@@ -9,7 +9,7 @@ class RibbonWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.setWindowTitle("我的系統 - Ribbon 仿 Office 介面")
+        self.setWindowTitle("二手書交易平台")
         self.resize(1000, 600)
 
         # ==== Ribbon Tabs ====

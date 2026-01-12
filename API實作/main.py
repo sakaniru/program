@@ -3,17 +3,12 @@ from fastapi import FastAPI, Depends, HTTPException # 記得加上 HTTPException
 from pydantic import BaseModel
 import os
 from dotenv import load_dotenv
-
-# --- 這裡原本寫錯了 ---
-# ❌ 錯誤寫法 (你現在的樣子)：
 # from sqlalchemy import sessionmaker, declarative_base, Session 
 load_dotenv("secret.env")
-# ✅ 正確寫法 (請改成這樣)：
+
 from sqlalchemy import create_engine, Column, Integer, String, Float, Boolean
 from sqlalchemy.orm import sessionmaker, declarative_base, Session
 # ---------------------
-
-# ... (後面的程式碼都不用動)
 # ================= 1. 資料庫連線設定 (MySQL) =================
 # 格式：mysql+pymysql://帳號:密碼@IP:Port/資料庫名稱
 # ★★★ 請將 'root:123456' 改成你的 MySQL 帳號密碼 ★★★

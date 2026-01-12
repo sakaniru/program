@@ -1,7 +1,7 @@
 # === 忽略環境變數 ===
 .env
 DCBOT/.env
-
+secret.env
 # === Python 編譯與暫存 ===
 __pycache__/
 *.pyc
